@@ -1,0 +1,44 @@
+process.stdout.write('\033c')
+
+if(process.env.ENVIROMENT === 'develop') {
+  require('dotenv').config()
+}
+
+const http = require('http'),
+  wsServer = require('ws').Server,
+  authInit = require('./libs/auth.js'),
+
+  { socketsInit } = require('./libs/sockets.js'),
+
+  { signUp } = require('./libs/auth/sign-up.js'),
+  { signIn } = require('./libs/auth/sign-in.js'),
+  { sendPasswordMail } = require('./libs/auth/send-password-mail.js'),
+  { signInWithToken } = require('./libs/auth/sign-in-with-token.js'),
+  { syncToServer } = require('./libs/sync/sync-to-server.js'),
+  { syncToClient, verifySyncToClient } = require('./libs/sync/sync-to-client.js'),
+  { setTeamTitle } = require('./libs/auth/team-title.js'),
+  { inviteMember } = require('./libs/auth/team-invite-member.js')
+
+  let ACTIONS = {
+    signUp,
+    signIn,
+    sendPasswordMail,
+    syncToServer,
+    syncToClient,
+    signInWithToken,
+    verifySyncToClient,
+    setTeamTitle,
+    inviteMember
+  }
+
+const server = http.createServer((req, res) => res.end('Server')).listen(process.env.PORT || 8080)
+console.log( 'Server Port: ', process.env.PORT || 8080)  
+
+const wss = new wsServer({
+  server
+})
+
+socketsInit({
+  wss,
+  ACTIONS
+})
