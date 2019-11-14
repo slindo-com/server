@@ -83,17 +83,21 @@ exports.signIn = async (ws, sockets, { promiseId, email, password }) =>
 				user: user._id,
 				sync: {
 					times: { 
-							lastId: null,
-							date: new Date(2000, 0, 0),
+						lastId: null,
+						date: new Date(2000, 0, 0),
 					},
 					tasks: { 
-							lastId: null,
-							date: new Date(2000, 0, 0),
+						lastId: null,
+						date: new Date(2000, 0, 0),
 					},
 					settings: { 
-							lastId: null,
-							date: new Date(2000, 0, 0)
-						}
+						lastId: null,
+						date: new Date(2000, 0, 0)
+					},
+					projects: { 
+						lastId: null,
+						date: new Date(2000, 0, 0)
+					}
 				}
 			}
 		}).catch(err => {

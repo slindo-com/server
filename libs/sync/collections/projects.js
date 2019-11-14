@@ -12,20 +12,13 @@ const STANDARD_ATTRIBUTES = [
 
 
 const ATTRIBUTES = [
-	'number',
+	'code',
 	'title',
-	'description',
-	'project',
-	'status',
-	'responsible',
-	'labels',
-	'priority',
-	'due',
+	'color',
 	'user',
 	'team'
 ]
 exports.ATTRIBUTES = ATTRIBUTES
-
 
 
 const DB_SEARCH = {
@@ -38,7 +31,6 @@ exports.shouldBeSynced = async (obj, user) =>
 	new Promise(async (resolve, reject) => {
 
 		if(Object.keys(obj).length != (ATTRIBUTES.length + STANDARD_ATTRIBUTES.length)) {
-			console.log(Object.keys(obj).length, (ATTRIBUTES.length + STANDARD_ATTRIBUTES.length))
 			resolve(false)
 		}
 
