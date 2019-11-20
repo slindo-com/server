@@ -97,6 +97,10 @@ exports.signIn = async (ws, sockets, { promiseId, email, password }) =>
 					projects: { 
 						lastId: null,
 						date: new Date(2000, 0, 0)
+					},
+					comments: { 
+						lastId: null,
+						date: new Date(2000, 0, 0)
 					}
 				}
 			}

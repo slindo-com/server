@@ -7,6 +7,7 @@ const collections = {
 	tasks: require('./collections/tasks.js'),
 	settings: require('./collections/settings.js'),
 	projects: require('./collections/projects.js'),
+	comments: require('./collections/comments.js')
 }
 
 
