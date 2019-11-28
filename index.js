@@ -17,7 +17,8 @@ const http = require('http'),
   { syncToServer } = require('./libs/sync/sync-to-server.js'),
   { syncToClient, verifySyncToClient } = require('./libs/sync/sync-to-client.js'),
   { setTeamTitle } = require('./libs/auth/team-title.js'),
-  { inviteMember } = require('./libs/auth/team-invite-member.js')
+  { inviteMember } = require('./libs/auth/team-invite-member.js'),
+  { updateMember } = require('./libs/auth/team-update-member.js')
 
   let ACTIONS = {
     signUp,
@@ -28,7 +29,8 @@ const http = require('http'),
     signInWithToken,
     verifySyncToClient,
     setTeamTitle,
-    inviteMember
+    inviteMember,
+    updateMember
   }
 
 const server = http.createServer((req, res) => res.end('Server')).listen(process.env.PORT || 8080)

@@ -9,6 +9,8 @@ let collections = {}
 exports.syncToServer = async (ws, sockets, { col, data }) =>
 	new Promise(async (resolve, reject) => {
 
+		console.log(col)
+
 		if(!collections[col]) {
 			collections[col] = require('./collections/'+ col +'.js')
 		}
