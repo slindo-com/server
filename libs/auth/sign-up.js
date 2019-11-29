@@ -98,7 +98,6 @@ exports.signUp = async (ws, sockets, { promiseId, email, password, code }) =>
 			teamWithInvite.invitations = teamWithInvite.invitations.filter(invitation => invitation.code != inviteToken)
 			teamWithInvite.users.push({
 				id: user._id,
-				title: invitationData.name,
 				role: 'USER'
 			})
 

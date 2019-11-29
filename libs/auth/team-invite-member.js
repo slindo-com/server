@@ -9,9 +9,9 @@ const getNewId = () => {
 	}).toLowerCase()
 }
 
-exports.inviteMember = async (ws, sockets, { teamId, email, name }) =>
+exports.inviteMember = async (ws, sockets, { teamId, email }) =>
 	new Promise(async (resolve, reject) => {
-		console.log('INVITE', teamId, email, name)
+		console.log('INVITE', teamId, email)
 
 		email = email.toLowerCase()
 
@@ -49,7 +49,6 @@ exports.inviteMember = async (ws, sockets, { teamId, email, name }) =>
 
 		team.invitations.push({
 			email,
-			name,
 			code: getNewId()
 		})
 
