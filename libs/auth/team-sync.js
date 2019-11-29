@@ -13,6 +13,25 @@ exports.teamSyncOut = async (ws, teamId) => {
 	})
 
 	if(!team) {
+
+		newObj = await db.create({
+			collection: 'teams',
+			id: teamId,
+			object: {
+				id: teamId,
+				title: '',
+				users: [{
+					id: ws.userData.id,
+					role: 'ADMIN'
+				}],
+				invitations: []
+			}
+		}).catch(err => {
+			reject({
+				code: 'new-database-object-failed'
+			})
+		})
+
 		ws.send(
 			JSON.stringify({
 				action: 'updateTeams',
@@ -21,7 +40,6 @@ exports.teamSyncOut = async (ws, teamId) => {
 					title: '',
 					users: [{
 						id: ws.userData.id,
-						title: '',
 						role: 'ADMIN'
 					}],
 					invitations: []
