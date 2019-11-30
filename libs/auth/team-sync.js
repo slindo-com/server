@@ -14,7 +14,7 @@ exports.teamSyncOut = async (ws, teamId) => {
 
 	if(!team) {
 
-		newObj = await db.create({
+		const newObj = await db.create({
 			collection: 'teams',
 			id: teamId,
 			object: {
@@ -27,9 +27,7 @@ exports.teamSyncOut = async (ws, teamId) => {
 				invitations: []
 			}
 		}).catch(err => {
-			reject({
-				code: 'new-database-object-failed'
-			})
+			console.log(err)
 		})
 
 		ws.send(
