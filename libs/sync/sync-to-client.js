@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken'),
 const collections = {
 	times: require('./collections/times.js'),
 	tasks: require('./collections/tasks.js'),
+	messages: require('./collections/messages.js'),
 	members: require('./collections/members.js'),
 	settings: require('./collections/settings.js'),
 	projects: require('./collections/projects.js'),
