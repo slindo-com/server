@@ -9,8 +9,6 @@ let collections = {}
 exports.syncToServer = async (ws, sockets, { col, data }) =>
 	new Promise(async (resolve, reject) => {
 
-		console.log(col)
-
 		if(!collections[col]) {
 			collections[col] = require('./collections/'+ col +'.js')
 		}
@@ -22,6 +20,8 @@ exports.syncToServer = async (ws, sockets, { col, data }) =>
 				code: 'should-not-be-synced'
 			})
 		}
+
+		data = await collections[col].adjustDataIn(data, ws.userData)
 
 		let dataInDb = await db.get({
 			collection: col,
@@ -78,7 +78,7 @@ exports.syncToServer = async (ws, sockets, { col, data }) =>
 			newObj = await db.create({
 				collection: col,
 				object: data,
-				id: id
+				id
 			}).catch(err => {
 				reject({
 					code: 'new-database-object-failed'

@@ -58,11 +58,9 @@ db.uniqueIndex = ({ collection, object }) =>
   })
 
 
-db.find = ({ collection, object }) =>
+db.find = ({ collection, object, limit = 100, sort = { updatedAt: 1 }}) =>
   new Promise((resolve, reject) => {
-    database.collection(collection).find(object).sort({ 
-      updatedAt: 1
-    }).limit(2).toArray((err, res) => {
+    database.collection(collection).find(object).sort(sort).limit(limit).toArray((err, res) => {
       err
         ? reject(err)
         : resolve(res)

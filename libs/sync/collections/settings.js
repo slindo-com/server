@@ -80,3 +80,9 @@ exports.shouldBeSyncedOut = (ws, socketsTeams, newObj) => {
 
 	return socketClients
 }
+
+
+exports.adjustDataIn = async (obj, user) =>
+	new Promise(async (resolve, reject) => {
+		resolve(obj)
+	})
