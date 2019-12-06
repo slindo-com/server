@@ -86,7 +86,7 @@ exports.adjustDataIn = async (obj, user) =>
 			let lastNumberObj = await db.find({
 				collection: 'tasks',
 				object: {
-					team: obj.team
+					team: obj.project
 				},
 				limit: 1,
 				sort: {
